@@ -97,8 +97,8 @@
         {
             "atomType": "Rotate",
             "name": "Rotate",
-            "x": 0.4803836094158675,
-            "y": 0.7289156626506024,
+            "x": 0.4350479511769834,
+            "y": 0.7319277108433735,
             "uniqueID": 1744404791678,
             "ioValues": [
                 {
@@ -123,8 +123,8 @@
         {
             "atomType": "Code",
             "name": "Code",
-            "x": 0.6608544027898866,
-            "y": 0.6234939759036144,
+            "x": 0.4969485614646905,
+            "y": 0.30120481927710846,
             "uniqueID": 1744404916698,
             "ioValues": [
                 {
@@ -142,7 +142,82 @@
             ],
             "description": "Defines a Replicad code block.",
             "codeVersion": 1,
-            "code": " \n      //Inputs:[inputShape, dist, height]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      //Takes the address and gets the shape from the library\n      let importedShape = library[inputShape]\n\n     const newPlane = new Plane().pivot(90, 'X');\n      \n      //This makes a new copy of of the shape (to prevent garbage collection issues),\n      //and moves it in the X direction. Note that this will not work if the input is an assembly\n      let movedShape = draw()\n    .hLine(25)\n    .halfEllipse(0, 40, 15)\n    .hLine(-25)\n    .close()\n    .sketchOnPlane(\"XZ\")\n    .revolve();\n    \n\n      \n      //Shapes stored in the library have tags, a color, a plane, and a bill of materials like this. We don't modify them here\n      let shape1 = {\n        geometry: [movedShape],\n        tags: importedShape.tags,\n        color: importedShape.color,\n        plane: importedShape.plane,\n        bom: importedShape.bom\n      }\n      \n   return shape1"
+            "code": " \n      //Inputs:[inputShape, dist, height]\n      //This defines the molecules inputs and creates variables with the same names which can be referenced in the code\n      \n      //Takes the address and gets the shape from the library\n      let importedShape = library[inputShape]\n\n     const newPlane = new Plane().pivot(90, 'X');\n      \n      //This makes a new copy of of the shape (to prevent garbage collection issues),\n      //and moves it in the X direction. Note that this will not work if the input is an assembly\n      let movedShape = draw()\n    .hLine(25)\n    .halfEllipse(0, -20, 15)\n    .hLine(-25)\n    .close()\n    .sketchOnPlane(\"XZ\")\n    .revolve();\n    \n\n      \n      //Shapes stored in the library have tags, a color, a plane, and a bill of materials like this. We don't modify them here\n      let shape1 = {\n        geometry: [movedShape],\n        tags: importedShape.tags,\n        color: importedShape.color,\n        plane: importedShape.plane,\n        bom: importedShape.bom\n      }\n      \n   return shape1"
+        },
+        {
+            "atomType": "Move",
+            "name": "Move",
+            "x": 0.5972101133391456,
+            "y": 0.5331325301204819,
+            "uniqueID": 1744405826852,
+            "ioValues": [
+                {
+                    "name": "geometry",
+                    "ioValue": 1744404916698
+                },
+                {
+                    "name": "xDist",
+                    "ioValue": 0
+                },
+                {
+                    "name": "yDist",
+                    "ioValue": 0
+                },
+                {
+                    "name": "zDist",
+                    "ioValue": 15
+                }
+            ],
+            "description": "Moves a shape laterally in X, Y, Z."
+        },
+        {
+            "atomType": "Fusion",
+            "name": "Fusion",
+            "x": 0.7367044463818657,
+            "y": 0.4457831325301205,
+            "uniqueID": 1744405834101,
+            "ioValues": [
+                {
+                    "name": "Shape 1",
+                    "ioValue": 1744405826852
+                },
+                {
+                    "name": "Shape 2",
+                    "ioValue": 1744404916698
+                },
+                {
+                    "name": "Shape 3",
+                    "ioValue": 1744405870889
+                }
+            ],
+            "description": "Pick between assembly and fusion to join input geometries. Assembly takes multiple shapes together into one, shapes higher in the inputs list will cut into shapes lower on the input list where they overlap. Fusion takes all shapes or sketches and fuses them permanently into a single shape",
+            "unionType": "Fusion"
+        },
+        {
+            "atomType": "Move",
+            "name": "Move",
+            "x": 0.6120313862249347,
+            "y": 0.7921686746987953,
+            "uniqueID": 1744405870889,
+            "ioValues": [
+                {
+                    "name": "geometry",
+                    "ioValue": 1744404916698
+                },
+                {
+                    "name": "xDist",
+                    "ioValue": 0
+                },
+                {
+                    "name": "yDist",
+                    "ioValue": 0
+                },
+                {
+                    "name": "zDist",
+                    "ioValue": 30
+                }
+            ],
+            "description": "Moves a shape laterally in X, Y, Z."
         }
     ],
     "allConnectors": [
@@ -180,6 +255,41 @@
             "ap2Primary": false,
             "ap1ID": 1744404791678,
             "ap2ID": 1744404916698
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "geometry",
+            "ap2Primary": true,
+            "ap1ID": 1744404916698,
+            "ap2ID": 1744405826852
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "Shape 2",
+            "ap2Primary": false,
+            "ap1ID": 1744404916698,
+            "ap2ID": 1744405834101
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "geometry",
+            "ap2Primary": true,
+            "ap1ID": 1744404916698,
+            "ap2ID": 1744405870889
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "Shape 1",
+            "ap2Primary": false,
+            "ap1ID": 1744405826852,
+            "ap2ID": 1744405834101
+        },
+        {
+            "ap1Name": "geometry",
+            "ap2Name": "Shape 3",
+            "ap2Primary": false,
+            "ap1ID": 1744405870889,
+            "ap2ID": 1744405834101
         }
     ],
     "unitsKey": "Inches",
