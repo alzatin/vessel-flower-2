@@ -178,8 +178,8 @@
         {
             "atomType": "Fusion",
             "name": "Fusion",
-            "x": 0.7707061900610287,
-            "y": 0.27710843373493976,
+            "x": 0.7741935483870968,
+            "y": 0.2891566265060241,
             "uniqueID": 1744405834101,
             "ioValues": [
                 {
@@ -231,13 +231,13 @@
         {
             "atomType": "Circle",
             "name": "Circle",
-            "x": 0.5248474280732345,
-            "y": 0.8674698795180724,
+            "x": 0.5518744551002616,
+            "y": 0.8403614457831325,
             "uniqueID": 1744405912031,
             "ioValues": [
                 {
                     "name": "diameter",
-                    "ioValue": 40
+                    "ioValue": 60
                 }
             ],
             "description": "Creates a new circle."
@@ -245,7 +245,7 @@
         {
             "atomType": "Extrude",
             "name": "Extrude",
-            "x": 0.6442894507410637,
+            "x": 0.6512641673931997,
             "y": 0.7740963855421686,
             "uniqueID": 1744405914719,
             "ioValues": [
@@ -255,7 +255,7 @@
                 },
                 {
                     "name": "height",
-                    "ioValue": 100
+                    "ioValue": 70
                 }
             ],
             "description": "Extrudes a 2D shape. Input can be negitive. "
@@ -289,8 +289,8 @@
         {
             "atomType": "Fusion",
             "name": "Fusion",
-            "x": 0.8256320836965998,
-            "y": 0.6716867469879517,
+            "x": 0.8108108108108107,
+            "y": 0.5783132530120482,
             "uniqueID": 1744406273969,
             "ioValues": [
                 {
@@ -298,8 +298,8 @@
                     "ioValue": 1744405834101
                 },
                 {
-                    "name": "Shape 2",
-                    "ioValue": 1744406279459
+                    "name": "Shape 3",
+                    "ioValue": 1744405914719
                 }
             ],
             "description": "Pick between assembly and fusion to join input geometries. Assembly takes multiple shapes together into one, shapes higher in the inputs list will cut into shapes lower on the input list where they overlap. Fusion takes all shapes or sketches and fuses them permanently into a single shape",
@@ -330,6 +330,36 @@
                 }
             ],
             "description": "Moves a shape laterally in X, Y, Z."
+        },
+        {
+            "atomType": "Export",
+            "name": "Export",
+            "x": 0.8535309503051439,
+            "y": 0.825301204819277,
+            "uniqueID": 1744494503281,
+            "ioValues": [
+                {
+                    "name": "geometry",
+                    "ioValue": 1744406273969
+                },
+                {
+                    "name": "Resolution (dpi)",
+                    "ioValue": 96
+                },
+                {
+                    "name": "Part Name",
+                    "ioValue": "vessel-flower-2"
+                },
+                {
+                    "name": "File Type",
+                    "ioValue": "STL"
+                }
+            ],
+            "description": "Export Atom, let's you choose a type of file to Export.",
+            "type": "STL",
+            "resolution": 96,
+            "importIndex": 0,
+            "partName": "vessel-flower-2"
         }
     ],
     "allConnectors": [
@@ -440,6 +470,13 @@
         },
         {
             "ap1Name": "geometry",
+            "ap2Name": "Shape 3",
+            "ap2Primary": false,
+            "ap1ID": 1744405914719,
+            "ap2ID": 1744406273969
+        },
+        {
+            "ap1Name": "geometry",
             "ap2Name": "Shape 5",
             "ap2Primary": false,
             "ap1ID": 1744406072832,
@@ -447,10 +484,10 @@
         },
         {
             "ap1Name": "geometry",
-            "ap2Name": "Shape 2",
+            "ap2Name": "geometry",
             "ap2Primary": false,
-            "ap1ID": 1744406279459,
-            "ap2ID": 1744406273969
+            "ap1ID": 1744406273969,
+            "ap2ID": 1744494503281
         }
     ],
     "unitsKey": "Inches",
